@@ -1,0 +1,11 @@
+
+time_input = input("Введите текущее время в формате ЧЧ:ММ: ")
+
+
+hours, minutes = map(int, time_input.split(':'))
+
+
+total_seconds = hours * 3600 + minutes * 60
+
+
+print(f"Общее количество секунд: {total_seconds}")
