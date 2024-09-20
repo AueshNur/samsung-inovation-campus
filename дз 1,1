@@ -1,0 +1,36 @@
+#калькулятор для подсчета очков
+
+num_teams = int(input("Введите количество команд: "))
+
+teams = []
+for i in range(num_teams):
+    team_name = input(f"Введите название команды {i + 1}: ")
+    teams.append({'name': team_name, 'points': 0})
+
+
+num_rounds = int(input("Введите количество раундов: "))
+
+
+for round_num in range(1, num_rounds + 1):
+    print(f"\nРезультаты {round_num}-го раунда:")
+    for team in teams:
+	result = input(f"Введите результат для команды {team['name']} (победа/ничья/поражение): ").strip().lower()
+	if result == 'победа':
+	    team['points'] += 3
+	elif result == 'ничья':
+	    team['points'] += 1
+	elif result == 'поражение':
+	    team['points'] += 0
+	else:
+	    print("Некорректный ввод, результат не будет засчитан.")
+
+
+print("\nИтоговые результаты:")
+for team in teams:
+    print(f"Команда {team['name']} набрала {team['points']} очков")
+
+
+print("\nСредние баллы команд:")
+for team in teams:
+    average_points = team['points'] / num_rounds
+    print(f"Команда {team['name']} имеет средний балл: {average_points:.2f}")
