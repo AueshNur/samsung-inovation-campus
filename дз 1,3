@@ -1,0 +1,7 @@
+print("Welcome to your cooooool ferma")
+chiken = int(input("Введте количесвто кур на ферме:"))
+cows = int(input("Введте количесвто коровок на ферме:"))
+pigs = int(input("Введте количесвто свинок на ферме:"))
+
+legs = cows*4+pigs*4+chiken*2
+print(legs)
