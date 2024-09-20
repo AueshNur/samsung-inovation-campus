@@ -1,0 +1,39 @@
+# Функция для расчёта конечной суммы по депозиту
+def calculate_deposit(initial_deposit, annual_rate, years, compounding_frequency):
+    # Сложные проценты
+    final_amount = initial_deposit * (1 + (annual_rate / compounding_frequency / 100)) ** (compounding_frequency * years)
+    return final_amount
+
+# Ввод данных от пользователя
+try:
+    initial_deposit = float(input("Введите начальный депозит (в рублях): "))
+    annual_rate = float(input("Введите процентную ставку (годовых): "))
+    years = int(input("Введите количество лет, на которое вы кладёте деньги: "))
+    
+
+    print("Выберите частоту начисления процентов:")
+    print("1 - Ежемесячно")
+    print("2 - Ежеквартально")
+    print("3 - Полугодично")
+    print("4 - Годично")
+    frequency_choice = int(input("Введите номер выбора (1-4): "))
+
+    if frequency_choice == 1:
+        compounding_frequency = 12  # ежемесячно
+    elif frequency_choice == 2:
+        compounding_frequency = 4    # ежеквартально
+    elif frequency_choice == 3:
+        compounding_frequency = 2    # полугодично
+    elif frequency_choice == 4:
+        compounding_frequency = 1    # годично
+    else:
+        print("Некорректный выбор частоты начисления процентов.")
+        exit()
+
+
+    final_amount = calculate_deposit(initial_deposit, annual_rate, years, compounding_frequency)
+
+
+    print(f"Сумма по истечении {years} лет составит: {final_amount:.2f} рублей.")
+except ValueError:
+    print("Некорректный ввод. Пожалуйста, введите числовые значения.")
