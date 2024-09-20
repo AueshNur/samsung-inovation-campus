@@ -1,0 +1,33 @@
+import re
+import math
+
+equation = input("Введите квадратное уравнение в формате ax2+bx+c=0: ").replace(" ", "")
+
+
+match = re.match(r"([+-]?\d*)x2([+-]?\d*)x([+-]?\d*)=0", equation)
+
+if match:
+    a = int(match.group(1) or '1')  # Если коэффициент перед x^2 пустой, это значит 1
+    b = int(match.group(2) or '1')  # Если коэффициент перед x пустой, это значит 1
+    c = int(match.group(3))         # Свободный член
+
+    # Решаем уравнение
+    result = solve_quadratic(a, b, c)
+    print(result)
+else:
+    print("Неправильный формат уравнения. Убедитесь, что уравнение введено как ax2+bx+c=0. Либо это неполное квадратное или линейное уравнение код на который прописывать я поленилась")
+
+
+def solve_quadratic(a, b, c):
+    discriminant = b**2 - 4*a*c
+    if discriminant > 0:
+        x1 = (-b + math.sqrt(discriminant)) / (2*a)
+        x2 = (-b - math.sqrt(discriminant)) / (2*a)
+        return f"Корни уравнения: x1 = {x1}, x2 = {x2}"
+    elif discriminant == 0:
+        x = -b / (2*a)
+        return f"Уравнение имеет один корень: x = {x}"
+    else:
+        return "Уравнение не имеет действительных корней"
+
+
